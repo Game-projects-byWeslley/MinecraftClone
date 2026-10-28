@@ -5,11 +5,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.com.gattigit.MinecraftClone.render.Render;
+import br.com.gattigit.MinecraftClone.window.Window;
 
 @SpringBootApplication
 public class MinecraftCloneApplication implements CommandLineRunner{
+	Render render = new Render();
 
-	private Render render = new Render(600,600);
+	private Window window = new Window(600,600, render);
 
 	public static void main(String[] args) {
 		SpringApplication.run(MinecraftCloneApplication.class, args);
@@ -18,7 +20,7 @@ public class MinecraftCloneApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		render.generateWindow();
+		window.generateWindow();
 		System.out.println("Window");
 	}
 

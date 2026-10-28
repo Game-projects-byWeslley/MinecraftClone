@@ -82,6 +82,13 @@
 		    <scope>compile</scope>
 		</dependency>
 
+		<dependency>
+		    <groupId>org.lwjgl</groupId>
+		    <artifactId>lwjgl-opengl</artifactId>
+			<classifier>natives-windows</classifier>
+		    <version>3.4.3</version>
+		    <scope>compile</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
