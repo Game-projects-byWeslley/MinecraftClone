@@ -12,11 +12,10 @@ import org.lwjgl.opengl.GL30;
 import org.springframework.stereotype.Service;
 
 import br.com.gattigit.MinecraftClone.models.IFormato;
-//import br.com.gattigit.MinecraftClone.models.RObjetoRenderizavel;
-import br.com.gattigit.MinecraftClone.models.Triangulo;
 
 @Service
 public class Render {
+    private int totalDeObjetos = 0;
 
     private List<Float> objetosParaRederizar_vertices = new ArrayList<>();
 
@@ -55,19 +54,30 @@ public class Render {
     """;
 
     public void init(){
+
+        //indices e vertices
+        float[] vertices = new float[objetosParaRederizar_vertices.size()];
+        for (int i = 0; i < vertices.length; i++) {
+            vertices[i] = objetosParaRederizar_vertices.get(i);
+        }
+        int[] indices = new int[objetosParaRederizar_indices.size()];
+        for (int i = 0; i < indices.length; i++) {
+            indices[i] = objetosParaRederizar_indices.get(i);
+        }
+
+
         //vertices
         VAO = GL30.glGenVertexArrays();//vertex array obj : como ler e oq é cada dado
         GL30.glBindVertexArray(VAO);
         
         VBO = GL15.glGenBuffers();//vertex buffer obj : dados
         GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, VBO);
-        GL15.glBufferData(GL15.GL_ARRAY_BUFFER, new Triangulo().getVertices(), GL15.GL_STATIC_DRAW);
+        GL15.glBufferData(GL15.GL_ARRAY_BUFFER, vertices, GL15.GL_STATIC_DRAW);
 
         //ordem
         EBO = GL15.glGenBuffers();
         GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, EBO);
-        GL15.glBufferData(GL15.GL_ELEMENT_ARRAY_BUFFER,new Triangulo().getIndices(),
-            GL15.GL_STATIC_DRAW);
+        GL15.glBufferData(GL15.GL_ELEMENT_ARRAY_BUFFER, indices, GL15.GL_STATIC_DRAW);
 
         //configs
         GL20.glVertexAttribPointer(0, 3, GL11.GL_FLOAT, false, 3 * Float.BYTES, 0L);
@@ -118,7 +128,7 @@ public class Render {
         GL30.glBindVertexArray(VAO);
 
         //finalmente desenha o objeto
-        GL11.glDrawElements(GL11.GL_TRIANGLES, 3, GL11.GL_UNSIGNED_INT, 0L);
+        GL11.glDrawElements(GL11.GL_TRIANGLES, 3 * totalDeObjetos, GL11.GL_UNSIGNED_INT, 0L);
     }
 
     public void addObjeto(IFormato objeto){
@@ -144,6 +154,7 @@ public class Render {
                 //zera e limpa
             }
         }
+        totalDeObjetos++;
     }
 }
 

@@ -39,9 +39,9 @@ public class Window{
 		GL.createCapabilities();
 		GL46.glViewport(0, 0, width, height);
 
+		principal.work();
 		render.init();
 
-		principal.work();
 
 		//loop run
 		while (!GLFW.glfwWindowShouldClose(win)) {
