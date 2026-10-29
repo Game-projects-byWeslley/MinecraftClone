@@ -9,8 +9,8 @@ import br.com.gattigit.MinecraftClone.window.Window;
 
 @SpringBootApplication
 public class MinecraftCloneApplication implements CommandLineRunner{
+	
 	Render render = new Render();
-
 	private Window window = new Window(600,600, render);
 
 	public static void main(String[] args) {

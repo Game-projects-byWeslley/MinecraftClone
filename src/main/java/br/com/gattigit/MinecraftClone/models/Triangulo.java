@@ -2,12 +2,12 @@ package br.com.gattigit.MinecraftClone.models;
 
 public class Triangulo implements IFormato{
     private static final float[] vertices = {
-     0.0f,  0.5f, 0.0f,
+     0.5f,  0.5f, 0.0f,
     -0.5f, -0.5f, 0.0f,
      0.5f, -0.5f, 0.0f
     };
 
-    private static final Integer[] indices = {
+    private static final int[] indices = {
     0, 1, 2//x, y e z
     };
 
@@ -23,7 +23,7 @@ public class Triangulo implements IFormato{
     }
 
     @Override
-    public Integer[] getIndices() {
+    public int[] getIndices() {
         return indices;
     }
 }

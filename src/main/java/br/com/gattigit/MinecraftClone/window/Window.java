@@ -2,6 +2,7 @@ package br.com.gattigit.MinecraftClone.window;
 
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL;
+import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL46;
 
 import br.com.gattigit.MinecraftClone.render.Render;
@@ -34,8 +35,13 @@ public class Window{
 		GL.createCapabilities();
 		GL46.glViewport(0, 0, width, height);
 
+		render.init();
+
 		//loop run
 		while (!GLFW.glfwWindowShouldClose(win)) {
+			//limpa a tela
+			GL11.glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
+			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
 			//lps
 			lps++;
 			if(GLFW.glfwGetTime() >= timer + 1.0){

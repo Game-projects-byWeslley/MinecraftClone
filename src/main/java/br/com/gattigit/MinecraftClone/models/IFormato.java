@@ -6,5 +6,5 @@ public interface IFormato {
 
     public float[] getVertices();
 
-    public Integer[] getIndices();
+    public int[] getIndices();
 }
