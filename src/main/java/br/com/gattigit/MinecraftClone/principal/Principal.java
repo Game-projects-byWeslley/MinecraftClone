@@ -2,7 +2,6 @@ package br.com.gattigit.MinecraftClone.principal;
 
 import br.com.gattigit.MinecraftClone.render.Render;
 import br.com.gattigit.MinecraftClone.models.Triangulo;
-import br.com.gattigit.MinecraftClone.models.Troangulo;
 
 public class Principal {
     Render render;
@@ -13,7 +12,8 @@ public class Principal {
     
     public void work(){
         render.addObjeto(new Triangulo());
-        Troangulo tri = new Troangulo();
+        Triangulo tri = new Triangulo();
+        tri.translacao(new Float[]{0.5f,0.5f,0.0f});
         render.addObjeto(tri);
-    }    
+    }
 }
